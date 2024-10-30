@@ -3,6 +3,16 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
+describe('AppModule', () => {
+  it('should compile the app module', async () => {
+      const moduleRef = await Test.createTestingModule({
+          imports: [AppModule],
+      }).compile();
+
+      expect(moduleRef).toBeDefined();
+  });
+});
+
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
