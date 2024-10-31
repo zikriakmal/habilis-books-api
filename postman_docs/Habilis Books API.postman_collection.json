@@ -1,0 +1,1036 @@
+{
+	"info": {
+		"_postman_id": "43ba8f82-1db9-44ff-9334-90228d1c167d",
+		"name": "Habilis Books API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34331420"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login successful\", function () {",
+									"    pm.response.to.have.status(200); // Check if status is 200",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"habilis_token\", jsonData.data); // Adjust the key according to your response structure",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"admin\",\n    \"password\":\"admin_password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{habilis_base_url}}/v1/auth/login",
+							"host": [
+								"{{habilis_base_url}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"admin\",\n    \"password\":\"admin_password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/auth/login",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "231"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e7-6n0qi8k4nxe9GrtZWbawZDvHg+A\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:19:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"success\",\n    \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMDM1MTk3OSwiZXhwIjoxNzMyOTQzOTc5fQ.X6bGDbocOcQ0LSt18zeGvBO0uplxVJKoOMauz8HCx2k\"\n}"
+						},
+						{
+							"name": "Fail (Incorrect Password)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"admin\",\n    \"password\":\"asd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/auth/login",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-MjNCyGYMS3z7lvvTbvU9OqeQWa4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:19:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"message\": \"Incorrect password\"\n}"
+						},
+						{
+							"name": "Fail (Incorrect Username)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"asdf\",\n    \"password\":\"asd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/auth/login",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-lZXXzOe/hI88udWVQj9GHlO9PuQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:20:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"message\": \"Username not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author\":\"author1\",\n    \"publishedDate\":\"2024-02-10\",\n    \"title\":\"asdfdsaf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{habilis_base_url}}/v1/books",
+							"host": [
+								"{{habilis_base_url}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\":\"author1\",\n    \"publishedDate\":\"2024-02-10\",\n    \"title\":\"asdfdsaf\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-MZJWZc+Y+RUbHpnhz2B2Vipii24\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:09:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Forbidden resource\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\":\"author1\",\n    \"publishedDate\":\"2024-02-10\",\n    \"title\":\"asdfdsaf\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"79-nvKiSu/Xyg/rm8E7HCmLxJcw4EQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:18:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 9,\n        \"title\": \"asdfdsaf\",\n        \"author\": \"author1\",\n        \"publishedDate\": \"2024-02-10\"\n    }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\":\"\",\n    \"publishedDate\":\"\",\n    \"title\":\"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "176"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b0-q6XssutYxpyfEUrCH3+Ikqek034\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:20:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"title should not be empty\",\n        \"publishedDate must be a valid ISO 8601 date string\",\n        \"publishedDate should not be empty\",\n        \"author should not be empty\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{habilis_base_url}}/v1/books",
+							"host": [
+								"{{habilis_base_url}}"
+							],
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "731"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2db-wb2l0Xfu4Pus7NIVYpJymbHUtBI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:18:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"asdfdsaf\",\n            \"author\": \"author1\",\n            \"publishedDate\": \"2024-02-10\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Book By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{habilis_base_url}}/v1/books/:id",
+							"host": [
+								"{{habilis_base_url}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books/:id",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"79-eL++hBRUZuf63AouE0+Iyw/brFI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:10:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 4,\n        \"title\": \"asdfdsaf\",\n        \"author\": \"author1\",\n        \"publishedDate\": \"2024-02-10\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Book By Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author\":\"author update 2\",\n    \"publishedDate\":\"2024-03-10\",\n    \"title\":\"update ni\"  \n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{habilis_base_url}}/v1/books/:id",
+							"host": [
+								"{{habilis_base_url}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\":\"author update 2\",\n    \"publishedDate\":\"2024-03-10\",\n    \"title\":\"update ni\"  \n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books/:id",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-MZJWZc+Y+RUbHpnhz2B2Vipii24\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:09:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Forbidden resource\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\":\"author update 2\",\n    \"publishedDate\":\"2024-03-10\",\n    \"title\":\"update ni\"  \n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books/:id",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"82-b5UrEnj0afB+Fz2BrswGDVCIu94\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:21:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 1,\n        \"title\": \"update ni\",\n        \"author\": \"author update 2\",\n        \"publishedDate\": \"2024-03-10\"\n    }\n}"
+						},
+						{
+							"name": "Fail (Type)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"author\":1,\n    \"publishedDate\":1,\n    \"title\":1  \n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books/:id",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "167"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a7-YbAq390RLU3jYCoDvUgNd2TpfU0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:21:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": [\n        \"title must be a string\",\n        \"publishedDate must be a valid ISO 8601 date string\",\n        \"publishedDate must be a string\",\n        \"author must be a string\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Book By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{habilis_base_url}}/v1/books/:id",
+							"host": [
+								"{{habilis_base_url}}"
+							],
+							"path": [
+								"v1",
+								"books",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books/:id",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-MZJWZc+Y+RUbHpnhz2B2Vipii24\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:09:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Forbidden resource\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+						},
+						{
+							"name": "Delete Book By Id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{habilis_base_url}}/v1/books/:id",
+									"host": [
+										"{{habilis_base_url}}"
+									],
+									"path": [
+										"v1",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "121"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"79-lpDy0FB4JVyDImQPhMn1SxKZEmU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 31 Oct 2024 05:22:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 5,\n        \"title\": \"asdfdsaf\",\n        \"author\": \"author1\",\n        \"publishedDate\": \"2024-02-10\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{habilis_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
