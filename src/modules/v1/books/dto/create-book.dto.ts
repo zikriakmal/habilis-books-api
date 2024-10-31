@@ -1,4 +1,4 @@
-import { IsDate, IsDateString, IsNotEmpty, IsString, isString } from "class-validator";
+import { IsDateString, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateBookDto {
 

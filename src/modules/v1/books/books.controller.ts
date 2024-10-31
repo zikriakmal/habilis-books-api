@@ -1,13 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/utils/jwt-auth.guard';
 import { Roles } from 'src/utils/roles.decorator';
+import { RolesGuard } from 'src/utils/roles.guard';
+import { Role } from '../users/domain/user';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
-import { RolesGuard } from 'src/utils/roles.guard';
-import { Role } from '../users/domain/user';
 
 @Controller('v1/books')
-@UseGuards(RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 export class BooksController {
     constructor(private readonly booksService: BooksService) { }
 
