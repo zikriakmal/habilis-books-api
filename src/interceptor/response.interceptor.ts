@@ -1,16 +1,16 @@
 import {
     CallHandler,
     ExecutionContext,
+    HttpException,
     HttpStatus,
     Injectable,
     NestInterceptor,
-    HttpException,
 } from '@nestjs/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
-export class ResponseInterceptor<T> implements NestInterceptor {
+export class ResponseInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const httpContext = context.switchToHttp();
         const response = httpContext.getResponse();

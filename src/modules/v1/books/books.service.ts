@@ -1,11 +1,12 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateBookDto } from './dto/create-book.dto';
 
 @Injectable()
 export class BooksService {
-    private books = [];
+    private books: Array<Book> = [];
     private lastId = 0;
 
-    async create({ title, author, publishedDate }: { title: string, author: string, publishedDate: string }) {
+    async create({ title, author, publishedDate }: CreateBookDto): Promise<Book> {
         this.lastId += 1;
         const book = {
             id: this.lastId,
@@ -24,7 +25,7 @@ export class BooksService {
 
     async getById({ id }: { id: number }) {
         const book = this.books.find((dt) => dt.id === Number(id));
-        if (!book) throw new NotFoundException(`Book id ${20} is not found`);
+        if (!book) throw new NotFoundException(`Book id not found`);
         return book;
     }
 

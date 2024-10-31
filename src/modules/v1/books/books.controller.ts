@@ -7,11 +7,11 @@ export class BooksController {
     constructor(private readonly booksService: BooksService) { }
 
     @Post()
-    async create(@Body() body: CreateBookDto): Promise<any> {
+    async create(@Body() body: CreateBookDto): Promise<Book> {
         const result = this.booksService.create({
             author: body.author,
             publishedDate: body.publishedDate,
-            title: body?.title
+            title: body.title
         })
         return result;
     }
@@ -23,7 +23,7 @@ export class BooksController {
     }
 
     @Get(':id')
-    async findOne(@Param('id') id): Promise<any> {
+    async findOne(@Param('id') id: number): Promise<any> {
         const result = this.booksService.getById({ id: id });
         return result;
     }
