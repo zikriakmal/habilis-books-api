@@ -48,7 +48,7 @@ describe('BooksController', () => {
   })
 
   it('should return array of book object from the service when calling get all on controller', async () => {
-    const result = await booksController.findAll();
+    const result = await booksController.getAll();
     expect(result).toEqual([
       {
         id: 1,
@@ -62,7 +62,6 @@ describe('BooksController', () => {
 
   it('should return book for param id when calling findOne', async () => {
     const id = 1;
-    const meong = 2;
     const expectedResult: Book = {
       id: 1,
       title: "test",
@@ -70,7 +69,7 @@ describe('BooksController', () => {
       publishedDate: "1992-01-02",
     };
 
-    const result = await booksController.findOne(id);
+    const result = await booksController.getById(id);
     expect(booksService.getById).toHaveBeenCalledWith({ id });
     expect(result).toEqual(expectedResult);
   })

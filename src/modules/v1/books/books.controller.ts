@@ -17,13 +17,13 @@ export class BooksController {
     }
 
     @Get()
-    async findAll(): Promise<any> {
+    async getAll(): Promise<any> {
         const result = this.booksService.getAll();
         return result;
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: number): Promise<any> {
+    async getById(@Param('id') id: number): Promise<any> {
         const result = this.booksService.getById({ id: id });
         return result;
     }
