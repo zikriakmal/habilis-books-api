@@ -17,7 +17,7 @@ export class AuthService {
         const isPasswordValid = await bcrypt.compare(loginData.password, user.password);
         if (!isPasswordValid) throw new UnauthorizedException("Incorrect password");
 
-        const payload = { id: user.id, username: user.username, role: user.password };
+        const payload = { id: user.id, username: user.username, role: user.role };
         const jwt = this.jwtService.signAsync(payload);
         
         return jwt;
