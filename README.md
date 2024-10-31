@@ -1,99 +1,82 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# HABILIS BOOKS API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## INSTALLATION 
+- Clone this project at https://github.com/zikriakmal/habilis-books-api 
+- Copy .env.example to .env (fill the all the secret and config value into .env)
+- npm install
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+ install with node package manager
+```
+git clone https://github.com/zikriakmal/habilis-books-api
+cd habilis-books-api
+npm install
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ npm install
 ```
 
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+## RUN THIS PROJECT
+to run start this project npm run 
+```
+npm run start
+```
+or
+npm run start:dev to listen every changes in project
+```
+npm run start:dev
 ```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+## RUN THIS PROJECT WITH DOCKER
+to this project in docker need to install docker 
+```
+docker-compose up -d --build
 ```
 
-## Deployment
+## .env value explanation
+- ADMIN_USERNAME : admin username (for admin role)
+- ADMIN_PASSWORD : admin password (for admin role)
+- USER_USERNAME : user username (for user role)
+- USER_PASSWORD : user password (for user role)
+- JWT_SECRET: jwt secret key (for authentication and authorization)
+- PORT : running application port
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## in memory data explanation
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### User Data
+- initialize data is in users service to login through auth service 
+- there are 2 user data which admin and user (the configuration should be in .env)
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+### Books Data
+- initialize empty array in books service (every application start or restart data should be empty or need to create through create book endpoint)
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
-## Resources
+-------
 
-Check out a few resources that may come in handy when working with NestJS:
+## Project requirements
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+1. Create a NestJS application that manages a collection of books.
+2. Define a Book entity with the following properties:
+- id: number
+- title: string
+- author: string
+- publishedDate: string
+3. Implement CRUD operations:
+- Create a new book
+- Read all books
+- Read a single book by ID
+- Update a book by ID
+- Delete a book by ID
+4. Use DTOs (Data Transfer Objects) for input validation.
+5. Implement basic error handling for cases like book not found.
+6. Use an in-memory array to store books (no need for a database).
+7. Implement Role-Based Access Control (RBAC):
+- Define roles: Admin and User.
+- Only Admin can create, update, and delete books.
+- Both Admin and User can read books.
+8. Implement authentication:
+- Create a simple authentication mechanism for Admin and User.
+- Use JWT (JSON Web Token) for authentication.
+9. Create a custom middleware:
+- The middleware should log the details of each incoming request (method,
+URL, timestamp).
+- The middleware should also validate the JWT.
+10. Create API documentation:
+- Document the API endpoints using Postman.
